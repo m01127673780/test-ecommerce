@@ -31,7 +31,7 @@ class CityDatatable extends DataTable {
 	 * @return \Illuminate\Database\Eloquent\Builder
 	 */
 	public function query() {
-		return City::query();
+		return City::query()->with('country_id')->select('cities.*');
 	}
 
 	/**
@@ -62,7 +62,7 @@ class CityDatatable extends DataTable {
 
 				],
 				'initComplete' => " function () {
-		            this.api().columns([2,3]).every(function () {
+		            this.api().columns([2,3,4]).every(function () {
 		                var column = this;
 		                var input = document.createElement(\"input\");
 		                $(input).appendTo($(column.footer()).empty())
@@ -105,8 +105,8 @@ class CityDatatable extends DataTable {
 				'data'  => 'city_name_en',
 				'title' => trans('admin.city_name_en'),
 			],[
-				'name'  => 'country_id',
-				'data'  => 'country_id',
+				'name'  => 'country_id.country_name_'.session('lang'),
+				'data'  => 'country_id.country_name_'.session('lang'),
 				'title' => trans('admin.country_id'),
 			], [
 				'name'  => 'created_at',

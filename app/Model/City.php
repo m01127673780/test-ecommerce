@@ -12,7 +12,7 @@ class City extends Model {
 		'country_id',
 	];
 public function country_id(){
-	teturn this ->hasOne(\App\Model\Country::class,'id','country_id');
-}
+	return $this->hasOne('App\Model\Country','id','country_id');
+  }
 }
 
