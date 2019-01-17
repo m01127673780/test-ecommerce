@@ -23,7 +23,7 @@ class StatesController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
+		public function create() {
 		if (request()->ajax()) {
 			if (request()->has('country_id')) {
 				$select = request()->has('select')?request('select'):'';

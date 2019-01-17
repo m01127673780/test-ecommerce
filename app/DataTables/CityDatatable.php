@@ -62,7 +62,7 @@ class CityDatatable extends DataTable {
 
 				],
 				'initComplete' => " function () {
-		            this.api().columns([2,3,4]).every(function () {
+		            this.api().columns([2,3,4 ]).every(function () {
 		                var column = this;
 		                var input = document.createElement(\"input\");
 		                $(input).appendTo($(column.footer()).empty())
@@ -99,12 +99,12 @@ class CityDatatable extends DataTable {
 			], [
 				'name'  => 'city_name_ar',
 				'data'  => 'city_name_ar',
-				'title' => trans('admin.country_name_ar'),
+				'title' => trans('admin.city_name_ar'),
 			], [
 				'name'  => 'city_name_en',
 				'data'  => 'city_name_en',
 				'title' => trans('admin.city_name_en'),
-			],[
+			], [
 				'name'  => 'country_id.country_name_'.session('lang'),
 				'data'  => 'country_id.country_name_'.session('lang'),
 				'title' => trans('admin.country_id'),

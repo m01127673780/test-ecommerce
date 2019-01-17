@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 
 use App\Model\City;
 use Illuminate\Http\Request;
-use Storage;
 
 class CitiesController extends Controller {
 	/**
@@ -23,7 +22,7 @@ class CitiesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.cities.create', ['title' => trans('admin.create_countries')]);
+		return view('admin.cities.create', ['title' => trans('admin.create_cities')]);
 	}
 
 	/**
@@ -38,15 +37,15 @@ class CitiesController extends Controller {
 			[
 				'city_name_ar' => 'required',
 				'city_name_en' => 'required',
-				'country_id' => 'required|numeric',
- 
- 			], [], [
+				'country_id'   => 'required|numeric',
+
+			], [], [
 				'city_name_ar' => trans('admin.city_name_ar'),
 				'city_name_en' => trans('admin.city_name_en'),
- 
- 			]);
+				'country_id'   => trans('admin.country_id'),
 
-	 
+			]);
+
 		City::create($data);
 		session()->flash('success', trans('admin.record_added'));
 		return redirect(aurl('cities'));
@@ -87,16 +86,13 @@ class CitiesController extends Controller {
 			[
 				'city_name_ar' => 'required',
 				'city_name_en' => 'required',
-				'country_id' => 'required|numeric',
-		 
+				'country_id'   => 'required|numeric',
+
 			], [], [
 				'city_name_ar' => trans('admin.city_name_ar'),
 				'city_name_en' => trans('admin.city_name_en'),
-				'country_id' => trans('admin.country_id'),
-			 
+				'country_id'   => trans('admin.country_id'),
 			]);
-
-		 
 
 		City::where('id', $id)->update($data);
 		session()->flash('success', trans('admin.updated_record'));
@@ -111,7 +107,8 @@ class CitiesController extends Controller {
 	 */
 	public function destroy($id) {
 		$cities = City::find($id);
- 		$cities->delete();
+
+		$cities->delete();
 		session()->flash('success', trans('admin.deleted_record'));
 		return redirect(aurl('cities'));
 	}
@@ -120,11 +117,11 @@ class CitiesController extends Controller {
 		if (is_array(request('item'))) {
 			foreach (request('item') as $id) {
 				$cities = City::find($id);
- 				$cities->delete();
+				$cities->delete();
 			}
 		} else {
 			$cities = City::find(request('item'));
- 			$cities->delete();
+			$cities->delete();
 		}
 		session()->flash('success', trans('admin.deleted_record'));
 		return redirect(aurl('cities'));

@@ -42,8 +42,8 @@
   <link rel="stylesheet" href="{{ url('/') }}/design/adminlte/jstree/themes/default/style.css">
 
 
-  <script src="{{ url('/') }}('/design/adminlte/dist/js/myfunctions.js')"></script>
- 
+  <script src="{{ url('/design/adminlte/dist/js/myfunctions.js') }}"></script>
+
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

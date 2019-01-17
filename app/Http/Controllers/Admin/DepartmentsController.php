@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers\Admin;
-use App\DataTables\CityDatatable;
+
 use App\Http\Controllers\Controller;
 
 use App\Model\Department;
@@ -14,9 +14,8 @@ class DepartmentsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-				return view('admin.departments.index', ['title' => trans('admin.departments')]);
-
- 	}
+		return view('admin.departments.index', ['title' => trans('admin.departments')]);
+	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -24,7 +23,7 @@ class DepartmentsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-		return view('admin.departments.create', ['title' => trans('admin.create_add')]);
+		return view('admin.departments.create', ['title' => trans('admin.add')]);
 	}
 
 	/**
@@ -39,22 +38,29 @@ class DepartmentsController extends Controller {
 			[
 				'dep_name_ar' => 'required',
 				'dep_name_en' => 'required',
-				'parent_id'   => 'sometimes|nullable|numeric',
-				'icon'   => 'sometimes|nullable',
-				'descripton'   => 'sometimes|nullable',
-				'keyword'   => 'sometimes|nullable',
- 
- 			], [], [
+				'parent'      => 'sometimes|nullable|numeric',
+				'icon'        => 'sometimes|nullable|'.v_image(),
+				'description' => 'sometimes|nullable',
+				'keyword'     => 'sometimes|nullable',
+
+			], [], [
 				'dep_name_ar' => trans('admin.dep_name_ar'),
 				'dep_name_en' => trans('admin.dep_name_en'),
-				'parent_id'   => trans('admin.parent_id'),
+				'parent'      => trans('admin.parent'),
 				'icon'        => trans('admin.icon'),
-				'descripton'        => trans('admin.descripton'),
-				'keyword'        => trans('admin.keyword'),
- 
- 			]);
+				'description' => trans('admin.description'),
+				'keyword'     => trans('admin.keyword'),
+			]);
 
-	 
+		if (request()->hasFile('icon')) {
+			$data['icon'] = up()->upload([
+					'file'        => 'icon',
+					'path'        => 'departments',
+					'upload_type' => 'single',
+					'delete_file' => '',
+				]);
+		}
+
 		Department::create($data);
 		session()->flash('success', trans('admin.record_added'));
 		return redirect(aurl('departments'));
@@ -77,9 +83,9 @@ class DepartmentsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		$country = City::find($id);
-		$title   = trans('admin.edit');
-		return view('admin.departments.edit', compact('country', 'title'));
+		$department = Department::find($id);
+		$title      = trans('admin.edit');
+		return view('admin.departments.edit', compact('department', 'title'));
 	}
 
 	/**
@@ -95,23 +101,28 @@ class DepartmentsController extends Controller {
 			[
 				'dep_name_ar' => 'required',
 				'dep_name_en' => 'required',
-				'parent_id'   => 'sometimes|nullable|numeric',
-				'icon'   => 'sometimes|nullable',
-				'descripton'   => 'sometimes|nullable',
-				'keyword'   => 'sometimes|nullable',
- 
- 			], [], [
+				'parent'      => 'sometimes|nullable|numeric',
+				'icon'        => 'sometimes|nullable',
+				'description' => 'sometimes|nullable',
+				'keyword'     => 'sometimes|nullable',
+
+			], [], [
 				'dep_name_ar' => trans('admin.dep_name_ar'),
 				'dep_name_en' => trans('admin.dep_name_en'),
-				'parent_id'   => trans('admin.parent_id'),
+				'parent'      => trans('admin.parent'),
 				'icon'        => trans('admin.icon'),
-				'descripton'        => trans('admin.descripton'),
-				'keyword'        => trans('admin.keyword'),
- 
- 			]);
+				'description' => trans('admin.description'),
+				'keyword'     => trans('admin.keyword'),
+			]);
 
-	 
- 		 
+		if (request()->hasFile('icon')) {
+			$data['icon'] = up()->upload([
+					'file'        => 'icon',
+					'path'        => 'departments',
+					'upload_type' => 'single',
+					'delete_file' => Department::find($id)->icon,
+				]);
+		}
 
 		Department::where('id', $id)->update($data);
 		session()->flash('success', trans('admin.updated_record'));
@@ -124,23 +135,27 @@ class DepartmentsController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id) {
-		$departments = City::find($id);
- 		$departments->delete();
-		session()->flash('success', trans('admin.deleted_record'));
-		return redirect(aurl('departments'));
-	}
-
-	public function multi_delete() {
-		if (is_array(request('item'))) {
-			foreach (request('item') as $id) {
-				$departments = City::find($id);
- 				$departments->delete();
+	public static function delete_parent($id) {
+		$department_parent = Department::where('parent', $id)->get();
+		foreach ($department_parent as $sub) {
+			self::delete_parent($sub->id);
+			if (!empty($sub->icon)) {
+				Storage::has($sub->icon)?Storage::delete($sub->icon):'';
 			}
-		} else {
-			$departments = City::find(request('item'));
- 			$departments->delete();
+			$subdepartment = Department::find($sub->id);
+			if (!empty($subdepartment)) {
+				$subdepartment->delete();
+			}
 		}
+		$dep = Department::find($id);
+
+		if (!empty($dep->icon)) {
+			Storage::has($dep->icon)?Storage::delete($dep->icon):'';
+		}
+		$dep->delete();
+	}
+	public function destroy($id) {
+		self::delete_parent($id);
 		session()->flash('success', trans('admin.deleted_record'));
 		return redirect(aurl('departments'));
 	}
