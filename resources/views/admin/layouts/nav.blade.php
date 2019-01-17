@@ -116,6 +116,7 @@
       <li class=""><a href="{{ aurl('users') }}?level=company"><i class="fa fa-users"></i> {{ trans('admin.company') }}</a></li>
     </ul>
   </li>
+  
    <li class="treeview {{ active_menu('cities')[0] }}">
     <a href="#">
       <i class="fa fa-flag"></i> <span>{{ trans('admin.cities') }}</span>
@@ -125,6 +126,19 @@
     <ul class="treeview-menu" style="{{ active_menu('cities')[1] }}">
       <li class=""><a href="{{ aurl('cities') }}"><i class="fa fa-flag"></i> {{ trans('admin.cities') }}</a></li>
       <li class=""><a href="{{ aurl('cities/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
+
+    </ul>
+  </li>
+
+   <li class="treeview {{ active_menu('states')[0] }}">
+    <a href="#">
+      <i class="fa fa-flag"></i> <span>{{ trans('admin.states') }}</span>
+      <span class="pull-right-container">
+       </span>
+    </a>
+    <ul class="treeview-menu" style="{{ active_menu('states')[1] }}">
+      <li class=""><a href="{{ aurl('states') }}"><i class="fa fa-flag"></i> {{ trans('admin.states') }}</a></li>
+      <li class=""><a href="{{ aurl('states/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
 
     </ul>
   </li>
