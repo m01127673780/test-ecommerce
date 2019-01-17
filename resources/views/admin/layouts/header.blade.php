@@ -39,10 +39,11 @@
   <link rel="stylesheet" href="{{ url('/') }}/design/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ url('/') }}/design/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="{{ url('/') }}/design/adminlte/jstree/themes/default/style.css">
 
 
-  <script src="{{ url('/design/adminlte/dist/js/myfunctions.js') }}"></script>
-
+  <script src="{{ url('/') }}('/design/adminlte/dist/js/myfunctions.js')"></script>
+ 
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
