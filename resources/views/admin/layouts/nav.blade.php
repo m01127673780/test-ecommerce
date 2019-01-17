@@ -138,7 +138,21 @@
     </a>
     <ul class="treeview-menu" style="{{ active_menu('states')[1] }}">
       <li class=""><a href="{{ aurl('states') }}"><i class="fa fa-flag"></i> {{ trans('admin.states') }}</a></li>
-      <li class=""><a href="{{ aurl('states/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
+      <li class=""><a href="{{ aurl('states/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a>
+      </li>
+
+    </ul>
+
+      <li class="treeview {{ active_menu('departments')[0] }}">
+    <a href="#">
+      <i class="fa fa-list"></i> <span>{{ trans('admin.departments') }}</span>
+      <span class="pull-right-container">
+       </span>
+    </a>
+    <ul class="treeview-menu" style="{{ active_menu('departments')[1] }}">
+      <li class=""><a href="{{ aurl('departments') }}"><i class="fa fa-list"></i> {{ trans('admin.departments') }}</a></li>
+      <li class=""><a href="{{ aurl('departments/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a>
+      </li>
 
     </ul>
   </li>
