@@ -1,5 +1,5 @@
 @include('admin.layouts.header')
-@include('admin.layouts.navbar')
+@include('admin.layouts.nav')
 
 
  <!-- Content Wrapper. Contains page content -->
