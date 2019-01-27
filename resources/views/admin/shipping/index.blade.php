@@ -7,7 +7,7 @@
   <!-- /.box-header -->
   <div class="box-body">
 
-  	{!! Form::open(['id'=>'form_data','url'=>aurl('manufacturers/destroy/all'),'method'=>'delete']) !!}
+  	{!! Form::open(['id'=>'form_data','url'=>aurl('shippin/destroy/all'),'method'=>'delete']) !!}
     {!! $dataTable->table(['class'=>'dataTable table table-striped table-hover  table-bordered'],true) !!}
     {!! Form::close() !!}
   </div>
