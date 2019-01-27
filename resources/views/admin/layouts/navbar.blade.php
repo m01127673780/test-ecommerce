@@ -188,6 +188,20 @@
   </li>
 
 
+   <li class="treeview {{ active_menu('malls')[0] }}">
+    <a href="#">
+      <i class="fa fa-building"></i> <span>{{ trans('admin.malls') }}</span>
+      <span class="pull-right-container">
+        
+      </span>
+    </a>
+    <ul class="treeview-menu" style="{{ active_menu('malls')[1] }}">
+      <li class=""><a href="{{ aurl('malls') }}"><i class="fa fa-building"></i> {{ trans('admin.malls') }}</a></li>
+      <li class=""><a href="{{ aurl('malls/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
+    </ul>
+  </li>
+
+
 </ul>
 </section>
 <!-- /.sidebar -->

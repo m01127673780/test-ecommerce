@@ -107,8 +107,10 @@ return [
 	'lng'                          => '',
 	'manufacturers_icon'           => 'شعار المصنع',
 	'address'                      => 'العنوان',
-	'shipping'                      => 'شركات الشحن',
-	'owner_id'                      => ' المالك',
-	'ship_icon'                      => '  شعار ال الشركه',
-	 
+	'shipping'                     => 'شركات الشحن',
+	'owner_id'                     => ' المالك',
+	'ship_icon'                    => '  شعار ال الشركه',
+	'mall_icon'                    => '  شعار ال الول',
+	'malls'                        => '  المولات',
+
 ];
