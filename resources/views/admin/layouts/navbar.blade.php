@@ -208,6 +208,18 @@
     </ul>
   </li>
 
+   <li class="treeview {{ active_menu('sizes')[0] }}">
+    <a href="#">
+      <i class="fa fa-info-circle"></i> <span>{{ trans('admin.sizes') }}</span>
+      <span class="pull-right-container">
+       </span>
+    </a>
+    <ul class="treeview-menu" style="{{ active_menu('sizes')[1] }}">
+      <li class=""><a href="{{ aurl('sizes') }}"><i class="fa  fa-info-circle"></i> {{ trans('admin.sizes') }}</a></li>
+      <li class=""><a href="{{ aurl('sizes/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
+    </ul>
+  </li>
+
 </ul>
 </section>
 <!-- /.sidebar -->

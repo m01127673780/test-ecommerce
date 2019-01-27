@@ -114,4 +114,7 @@ return [
    'mall_icon'                    => 'شعار المول',
    'colors'                       => 'الالوان',
    'color'                        => 'اللون',
+   'sizes'                        => 'المقاسات',
+   'is_public'                    => 'مقاس عام',
+   'department_id'                =>'رقم القسام'
 ];
