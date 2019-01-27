@@ -50,8 +50,8 @@ class ShippingDatatable extends DataTable {
                     [
                         'text' => '<i class="fa fa-plus"></i> ' . trans('admin.add'), 'className' => 'btn btn-info', "action" => "function(){
 
-                            window.location.href = '" . \URL::current() . "/create';
-                        }", ],
+							window.location.href = '" . \URL::current() . "/create';
+						}", ],
 
                     ['extend' => 'print', 'className' => 'btn btn-primary', 'text' => '<i class="fa fa-print"></i>'],
                     ['extend' => 'csv', 'className' => 'btn btn-info', 'text' => '<i class="fa fa-file"></i> ' . trans('admin.ex_csv')],
@@ -62,15 +62,15 @@ class ShippingDatatable extends DataTable {
 
                 ],
                 'initComplete' => " function () {
-                    this.api().columns([2,3]).every(function () {
-                        var column = this;
-                        var input = document.createElement(\"input\");
-                        $(input).appendTo($(column.footer()).empty())
-                        .on('keyup', function () {
-                            column.search($(this).val(), false, false, true).draw();
-                        });
-                    });
-                }",
+		            this.api().columns([2,3]).every(function () {
+		                var column = this;
+		                var input = document.createElement(\"input\");
+		                $(input).appendTo($(column.footer()).empty())
+		                .on('keyup', function () {
+		                    column.search($(this).val(), false, false, true).draw();
+		                });
+		            });
+		        }",
 
                 'language'     => datatable_lang(),
 

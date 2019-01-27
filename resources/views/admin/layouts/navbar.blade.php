@@ -171,15 +171,11 @@
       <li class=""><a href="{{ aurl('manufacturers/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
     </ul>
   </li>
-
-
-
- <li class="treeview {{ active_menu('shipping')[0] }}">
+   <li class="treeview {{ active_menu('shipping')[0] }}">
     <a href="#">
       <i class="fa fa-truck"></i> <span>{{ trans('admin.shipping') }}</span>
       <span class="pull-right-container">
-        
-      </span>
+       </span>
     </a>
     <ul class="treeview-menu" style="{{ active_menu('shipping')[1] }}">
       <li class=""><a href="{{ aurl('shipping') }}"><i class="fa fa-truck"></i> {{ trans('admin.shipping') }}</a></li>
@@ -192,8 +188,7 @@
     <a href="#">
       <i class="fa fa-building"></i> <span>{{ trans('admin.malls') }}</span>
       <span class="pull-right-container">
-        
-      </span>
+       </span>
     </a>
     <ul class="treeview-menu" style="{{ active_menu('malls')[1] }}">
       <li class=""><a href="{{ aurl('malls') }}"><i class="fa fa-building"></i> {{ trans('admin.malls') }}</a></li>
@@ -201,6 +196,17 @@
     </ul>
   </li>
 
+   <li class="treeview {{ active_menu('colors')[0] }}">
+    <a href="#">
+      <i class="fa fa-paint-brush"></i> <span>{{ trans('admin.colors') }}</span>
+      <span class="pull-right-container">
+       </span>
+    </a>
+    <ul class="treeview-menu" style="{{ active_menu('colors')[1] }}">
+      <li class=""><a href="{{ aurl('colors') }}"><i class="fa fa-paint-brush"></i> {{ trans('admin.colors') }}</a></li>
+      <li class=""><a href="{{ aurl('colors/create') }}"><i class="fa fa-plus"></i> {{ trans('admin.add') }}</a></li>
+    </ul>
+  </li>
 
 </ul>
 </section>

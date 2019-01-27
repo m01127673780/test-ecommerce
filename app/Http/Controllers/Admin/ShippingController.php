@@ -123,7 +123,7 @@ class ShippingController extends Controller {
 
         Shipping::where('id', $id)->update($data);
         session()->flash('success', trans('admin.updated_record'));
-        return redirect(aurl('shipping'));
+        return redirect(aurl('manufacturers'));
     }
 
     /**
