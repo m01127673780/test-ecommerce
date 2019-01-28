@@ -119,4 +119,5 @@ return [
    'department_id'                =>'رقم القسام',
    'weights'                      =>'الاحجام',
    'products'                     =>' المنتجات',
+   'currency'                     =>' العمله',
 ];

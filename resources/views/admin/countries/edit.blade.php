@@ -24,9 +24,17 @@
         {!! Form::text('code',$country->code,['class'=>'form-control']) !!}
      </div>
 
+     
+
      <div class="form-group">
         {!! Form::label('mob',trans('admin.mob')) !!}
         {!! Form::text('mob',$country->mob,['class'=>'form-control']) !!}
+     </div>
+
+
+     <div class="form-group">
+        {!! Form::label('currency',trans('admin.currency')) !!}
+        {!! Form::text('currency',$country->currency,['class'=>'form-control']) !!}
      </div>
 
      <div class="form-group">

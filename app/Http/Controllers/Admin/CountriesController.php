@@ -40,6 +40,7 @@ class CountriesController extends Controller {
 				'country_name_en' => 'required',
 				'mob'             => 'required',
 				'code'            => 'required',
+				'currency'        => 'required',
 				'logo'            => 'sometimes|nullable|'.v_image(),
 			], [], [
 				'country_name_ar' => trans('admin.country_name_ar'),
@@ -47,6 +48,7 @@ class CountriesController extends Controller {
 				'mob'             => trans('admin.mob'),
 				'code'            => trans('admin.code'),
 				'logo'            => trans('admin.country_flag'),
+				'currency'        => trans('admin.currency'),
 			]);
 
 		if (request()->hasFile('logo')) {
@@ -94,19 +96,22 @@ class CountriesController extends Controller {
 	 */
 	public function update(Request $r, $id) {
 
+		
 		$data = $this->validate(request(),
 			[
 				'country_name_ar' => 'required',
 				'country_name_en' => 'required',
 				'mob'             => 'required',
 				'code'            => 'required',
+				'currency'        => 'required',
 				'logo'            => 'sometimes|nullable|'.v_image(),
 			], [], [
 				'country_name_ar' => trans('admin.country_name_ar'),
 				'country_name_en' => trans('admin.country_name_en'),
 				'mob'             => trans('admin.mob'),
 				'code'            => trans('admin.code'),
-				'logo'            => trans('admin.logo'),
+				'logo'            => trans('admin.country_flag'),
+				'currency'        => trans('admin.currency'),
 			]);
 
 		if (request()->hasFile('logo')) {
