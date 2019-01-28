@@ -17,7 +17,7 @@ Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('photo');
-            $table->string('content');
+            $table->longtext('content');
             $table->integer('department_id')->unsigned()->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');          
 

@@ -119,5 +119,13 @@ return [
    'department_id'                =>'رقم القسام',
    'weights'                      =>'الاحجام',
    'products'                     =>' المنتجات',
-   'currency'                     =>' العمله',
-];
+   'product_media'                =>' العمله',
+   'product_info'                 =>' معلومات المنتج',
+   'product_setting'              =>' اعدادات المنتج',
+   'product_content'              =>'   محتوى  المنتج',
+   'product_size_weight'          =>' الوزان واحاجم',
+   'product_other_data'           =>'معلومات اضفايه',
+   'create_products'              =>'اضافه منتج',
+   'save_continue'              =>' حفظ واستمرار',
+   'copy_products'              =>'   نسخ منتج  ',
+  ];

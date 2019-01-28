@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\ProductsDatatable;
 use App\Http\Controllers\Controller;
 
-use App\Model\Country;
+use App\Model\Product;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -58,7 +58,7 @@ class ProductsController extends Controller {
 				]);
 		}
 
-		Country::create($data);
+		Product::create($data);
 		session()->flash('success', trans('admin.record_added'));
 		return redirect(aurl('products'));
 	}
@@ -80,7 +80,7 @@ class ProductsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		$product = Country::find($id);
+		$product = Product::find($id);
 		$title   = trans('admin.edit');
 		return view('admin.products.edit', compact('country', 'title'));
 	}
@@ -114,11 +114,11 @@ class ProductsController extends Controller {
 					'file'        => 'logo',
 					'path'        => 'products',
 					'upload_type' => 'single',
-					'delete_file' => Country::find($id)->logo,
+					'delete_file' => Product::find($id)->logo,
 				]);
 		}
 
-		Country::where('id', $id)->update($data);
+		Product::where('id', $id)->update($data);
 		session()->flash('success', trans('admin.updated_record'));
 		return redirect(aurl('products'));
 	}
@@ -130,7 +130,7 @@ class ProductsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		$products = Country::find($id);
+		$products = Product::find($id);
 		Storage::delete($products->logo);
 		$products->delete();
 		session()->flash('success', trans('admin.deleted_record'));
@@ -140,12 +140,12 @@ class ProductsController extends Controller {
 	public function multi_delete() {
 		if (is_array(request('item'))) {
 			foreach (request('item') as $id) {
-				$products = Country::find($id);
+				$products = Product::find($id);
 				Storage::delete($products->logo);
 				$products->delete();
 			}
 		} else {
-			$products = Country::find(request('item'));
+			$products = Product::find(request('item'));
 			Storage::delete($products->logo);
 			$products->delete();
 		}
