@@ -116,5 +116,7 @@ return [
    'color'                        => 'اللون',
    'sizes'                        => 'المقاسات',
    'is_public'                    => 'مقاس عام',
-   'department_id'                =>'رقم القسام'
+   'department_id'                =>'رقم القسام',
+   'weights'                      =>'الاحجام',
+   'products'                     =>' المنتجات',
 ];
