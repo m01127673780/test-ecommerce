@@ -21,7 +21,7 @@ $(document).ready(function() {
   </div>
   <!-- /.box-header -->
   <div class="box-body">
-    {!! Form::open(['url'=>aurl('products')]) !!}
+    {!! Form::open(['url'=>aurl('products'),'files'=>true]) !!}
 <a class="btn btn-success save" href="">         {{ trans('admin.save') }} <i class="fa fa-floppy-o"></i></a>
 <a class="btn btn-primary save_continue" href="">{{ trans('admin.save_continue') }} <i class="fa fa-floppy-o "></i></a>
 <a class="btn btn-info copy_products" href="">   {{ trans('admin.copy_products') }} <i class="fa fa-copy"></i></a>

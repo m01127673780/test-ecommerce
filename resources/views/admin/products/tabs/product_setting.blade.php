@@ -1,5 +1,19 @@
  @push('js')
  <script type="text/javascript">
+ 
+ $(document).on('change','.status', function(){
+  	var status = $('.status option:selected').val();
+ 	if(status == 'refused')
+ 	{
+ 		$('.reason').removeClass('hidden');
+
+ 	}else{
+ 		 $('.reason').addClass('hidden');
+
+ 	}
+
+ });
+
  $('.datepicker').datepicker({
 
  	rtl:'{{ session('lang')=='ar'?true:false}}',
@@ -9,6 +23,7 @@
 	todayBtn:true,
 	clearBtn:true 
  });
+ 
 </script>
  @endpush
     
@@ -59,12 +74,13 @@
 
  	<div class="form-group  ">
       {!! Form::label('status',trans('admin.status')) !!}
-      {!! Form::select('status',['pending'=>trans('admin.pending'),'refused'=>trans('admin.refused'),'active'=>trans('admin.active')],$product->status,['class'=>'form-control datepicker ','placeholder'=>trans('admin.status')]) !!}
+      {!! Form::select('status',['pending'=>trans('admin.pending'),'refused'=>trans('admin.refused'),'active'=>trans('admin.active')],$product->status,['class'=>'form-control reason ','placeholder'=>trans('admin.status')]) !!}
 	</div> <!-- /status" -->  
        
-    <div class="form-group">
+    <div class="form-group reason   {{ $product->status != 'refused'?'hidden':''}}">
       {!! Form::label('reason',trans('admin.refused_reason')) !!}
-      {!! Form::textarea('reason',$product->reason,['class'=>'form-control','placeholder'=>trans('admin.refused_reason')]) !!}
+{!! Form::textarea('reason',$product->reason,['class'=>'form-control ','placeholder'=>trans('admin.refused_reason')]) !!}
     </div> <!-- /reason" --> 
     </div>  <!-- /#product_setting" -->      
           
+ 
