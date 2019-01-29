@@ -251,8 +251,9 @@
 <script src="{{ url('/design/adminlte/dist/js/demo.js') }}"></script>
 <script src="{{ url('design/adminlte/jstree/jstree.js') }}"></script>
 <script src="{{ url('design/adminlte/jstree/jstree.wholerow.js') }}"></script>
-<script src="{{ url('design/adminlte/jstree/jstree.checkbox.js') }}"></script>
-
+<script src="{{ url('design/adminlte/jstree/jstree.checkbo.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.ar.min.js"></script>
 @stack('js')
 @stack('css')
 
