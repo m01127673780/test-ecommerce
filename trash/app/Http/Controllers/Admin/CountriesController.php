@@ -1,20 +1,20 @@
 <?php
 namespace App\Http\Controllers\Admin;
-use App\DataTables\ProductsDatatable;
+use App\DataTables\CountryDatatable;
 use App\Http\Controllers\Controller;
 
-use App\Model\Product;
+use App\Model\Country;
 use Illuminate\Http\Request;
 use Storage;
 
-class ProductsController extends Controller {
+class CountriesController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index(ProductsDatatable $product) {
-		return $product->render('admin.products.index', ['title' => trans('admin.products')]);
+	public function index(CountryDatatable $country) {
+		return $country->render('admin.countries.index', ['title' => trans('admin.countries')]);
 	}
 
 	/**
@@ -23,11 +23,8 @@ class ProductsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create() {
-	 $product= Product::create(['title' =>'',]);
-		if(!empty( $product)){
-			return redirect(aurl('products/'. $product->id .'/edit'));
-		} 
-  }
+		return view('admin.countries.create', ['title' => trans('admin.create_countries')]);
+	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -43,6 +40,7 @@ class ProductsController extends Controller {
 				'country_name_en' => 'required',
 				'mob'             => 'required',
 				'code'            => 'required',
+				'currency'        => 'required',
 				'logo'            => 'sometimes|nullable|'.v_image(),
 			], [], [
 				'country_name_ar' => trans('admin.country_name_ar'),
@@ -50,20 +48,21 @@ class ProductsController extends Controller {
 				'mob'             => trans('admin.mob'),
 				'code'            => trans('admin.code'),
 				'logo'            => trans('admin.country_flag'),
+				'currency'        => trans('admin.currency'),
 			]);
 
 		if (request()->hasFile('logo')) {
 			$data['logo'] = up()->upload([
 					'file'        => 'logo',
-					'path'        => 'products',
+					'path'        => 'countries',
 					'upload_type' => 'single',
 					'delete_file' => '',
 				]);
 		}
 
-		Product::create($data);
+		Country::create($data);
 		session()->flash('success', trans('admin.record_added'));
-		return redirect(aurl('products'));
+		return redirect(aurl('countries'));
 	}
 
 	/**
@@ -83,11 +82,10 @@ class ProductsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		$product = Product::find($id);
+		$country = Country::find($id);
 		$title   = trans('admin.edit');
-		return view('admin.products.product', ['title' => trans('admin.create_or_edit_product',['title'=>$product->title]),'product'=>$product]);
+		return view('admin.countries.edit', compact('country', 'title'));
 	}
-
 
 	/**
 	 * Update the specified resource in storage.
@@ -98,33 +96,36 @@ class ProductsController extends Controller {
 	 */
 	public function update(Request $r, $id) {
 
+		
 		$data = $this->validate(request(),
 			[
 				'country_name_ar' => 'required',
 				'country_name_en' => 'required',
 				'mob'             => 'required',
 				'code'            => 'required',
+				'currency'        => 'required',
 				'logo'            => 'sometimes|nullable|'.v_image(),
 			], [], [
 				'country_name_ar' => trans('admin.country_name_ar'),
 				'country_name_en' => trans('admin.country_name_en'),
 				'mob'             => trans('admin.mob'),
 				'code'            => trans('admin.code'),
-				'logo'            => trans('admin.logo'),
+				'logo'            => trans('admin.country_flag'),
+				'currency'        => trans('admin.currency'),
 			]);
 
 		if (request()->hasFile('logo')) {
 			$data['logo'] = up()->upload([
 					'file'        => 'logo',
-					'path'        => 'products',
+					'path'        => 'countries',
 					'upload_type' => 'single',
-					'delete_file' => Product::find($id)->logo,
+					'delete_file' => Country::find($id)->logo,
 				]);
 		}
 
-		Product::where('id', $id)->update($data);
+		Country::where('id', $id)->update($data);
 		session()->flash('success', trans('admin.updated_record'));
-		return redirect(aurl('products'));
+		return redirect(aurl('countries'));
 	}
 
 	/**
@@ -134,26 +135,26 @@ class ProductsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		$products = Product::find($id);
-		Storage::delete($products->logo);
-		$products->delete();
+		$countries = Country::find($id);
+		Storage::delete($countries->logo);
+		$countries->delete();
 		session()->flash('success', trans('admin.deleted_record'));
-		return redirect(aurl('products'));
+		return redirect(aurl('countries'));
 	}
 
 	public function multi_delete() {
 		if (is_array(request('item'))) {
 			foreach (request('item') as $id) {
-				$products = Product::find($id);
-				Storage::delete($products->logo);
-				$products->delete();
+				$countries = Country::find($id);
+				Storage::delete($countries->logo);
+				$countries->delete();
 			}
 		} else {
-			$products = Product::find(request('item'));
-			Storage::delete($products->logo);
-			$products->delete();
+			$countries = Country::find(request('item'));
+			Storage::delete($countries->logo);
+			$countries->delete();
 		}
 		session()->flash('success', trans('admin.deleted_record'));
-		return redirect(aurl('products'));
+		return redirect(aurl('countries'));
 	}
 }

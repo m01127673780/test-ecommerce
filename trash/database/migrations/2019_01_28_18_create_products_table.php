@@ -15,11 +15,9 @@ class CreateProductsTable extends Migration
     { 
 Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->string('title')->nullable();
-            $table->string('photo')->nullable();
-            $table->longtext('content')->nullable();
-
+            $table->string('title');
+            $table->string('photo');
+            $table->longtext('content');
             $table->integer('department_id')->unsigned()->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');          
 
@@ -46,20 +44,19 @@ Schema::create('products', function (Blueprint $table) {
           
 
 
-            $table->decimal('price', 5, 2)->default(0);
+            $table->decimal('price',5,2)->default(0);
 
             $table->integer('stock')->default(0);
+            $table->date('start_at')->nullable(0);
+            $table->date('end_at')->nullable(0);
 
-            $table->date('start_at')->nullable();
-            $table->date('end_at')->nullable();
-
-            $table->date('start_offer_at')->nullable();
-            $table->date('end_offer_at')->nullable();
+            $table->date('start_offer_at')->nullable(0);
+            $table->date('end_offer_at')->nullable(0);
              $table->decimal('price_offer',5,2)->default(0);
 
 
 
-            $table->longtext('other_data')->nullable();
+            $table->longtext('other_data')->nullabl();
 
 
             $table->string('weight')->nullable();

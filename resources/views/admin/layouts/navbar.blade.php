@@ -53,7 +53,7 @@
         </a>
         <ul class="treeview-menu" style="{{ active_menu('admin')[1] }}">
           <li class=""><a href="{{ aurl('dashboard') }}">
-            <i class="fa fa-cog"></i> <span>{{ trans('admin.dashboard') }}</span>
+            <i class="fa fa-cog fa-spin"></i> <span>{{ trans('admin.dashboard') }}</span>
             <span class="pull-right-container">
             </span>
           </a>

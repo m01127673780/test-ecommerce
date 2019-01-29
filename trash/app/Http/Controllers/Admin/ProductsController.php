@@ -22,12 +22,10 @@ class ProductsController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create() {
-	 $product= Product::create(['title' =>'',]);
-		if(!empty( $product)){
-			return redirect(aurl('products/'. $product->id .'/edit'));
-		} 
-  }
+	public function create() 
+	{
+
+	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -87,7 +85,6 @@ class ProductsController extends Controller {
 		$title   = trans('admin.edit');
 		return view('admin.products.product', ['title' => trans('admin.create_or_edit_product',['title'=>$product->title]),'product'=>$product]);
 	}
-
 
 	/**
 	 * Update the specified resource in storage.
