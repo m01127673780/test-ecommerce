@@ -14,7 +14,7 @@ class ProductsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index(ProductsDatatable $product) {
-		return $product->render('admin.products.index', ['title' => trans('admin.products')]);
+	return $product->render('admin.products.index', ['title' => trans('admin.products')]);
 	}
 
 	/**
@@ -96,6 +96,21 @@ class ProductsController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
+
+
+	public function upload_file($id) {
+		if (request()->hasFile('file')) {
+			return  up()->upload([
+					'file'        => 'file',
+					'path'        => 'products/'.$id,
+					'upload_type' => 'files',
+					'file_type'   => 'product',
+					'relation_id' =>  $id ,
+				]);
+		}
+
+
+	}
 	public function update(Request $r, $id) {
 
 		$data = $this->validate(request(),

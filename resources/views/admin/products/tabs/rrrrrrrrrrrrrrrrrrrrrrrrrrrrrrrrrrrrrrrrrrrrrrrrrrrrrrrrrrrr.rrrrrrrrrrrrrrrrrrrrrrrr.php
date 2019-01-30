@@ -25,7 +25,7 @@ use App\File as imagePro;
 		 	},init:function(){
  		 		@foreach($product->files()->get() as $file)
  		 		var mock = {name:'{{ $file->name }}',size:'{{ $file->size }}',type:'{{ $file->mime_type }}'};
-		 		this.emit.coll(this,moke);
+		 		this.emit.(addedfile,moke);
  		 		this.options.thumbnailWidth.coll(this,mock,'{{ url ( 'storage/'.$file->full_file ) }}');
 		 		@endforeach
 
@@ -36,9 +36,8 @@ use App\File as imagePro;
 	});
  
 </script>
+<!--
  @endpush
-
-<!--  
  @php 
  	$imagePro = imagePro::all();
  @endphp 
