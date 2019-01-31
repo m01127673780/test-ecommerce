@@ -14,8 +14,16 @@ class Upload extends Controller {
 	'mime_type',
 	'file_type',
 	'relation_id',
+	delete
 	 */
- 
+ 	public function delete($id)
+ 	{
+ 		$file = File::find($id);
+ 		if(!empty($file)) {
+ 		Storage::delete($file->full_file);
+ 		$file->delete();
+ 	}
+ }
 	public function upload($data = []) {
 
 		if (in_array('new_name', $data)) {
@@ -44,7 +52,7 @@ class Upload extends Controller {
 					'file_type'		=>  $data['file_type'],
 					'relation_id' 	=>  $data['relation_id'],
 			]);
-			return $data['path'].'/'.$hashname;
+			return $add->id;
  		}
 	}
 

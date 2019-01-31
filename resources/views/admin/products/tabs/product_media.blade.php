@@ -20,17 +20,42 @@ use App\File;
 		 	maxFilessaze:2,
 		 	acceptedFiles:'image/*',
 		 	dictDefaultMessage:' اضغط هنا لرفع الملفات او قم بسحب الملفات وادرجه هنا ',
-		 	params:{
+		 	dictRemoveFile:"{{ trans('admin.delete') }} ",
+ 		 	params:{
 		 		_token:'{{csrf_token() }}'
 
 
-		 	},init:function(){
+		 	},
+		 		addRemoveLinks:true,
+		 		removedfile:function(file)
+		 		{
+		 			//alert(file.fid);
+		 			$.ajax({
+		 			dataType:'json',
+		 			type:'post',
+		 			url:'{{ aurl('delete/image') }}',
+		 			data:{_token:'{{csrf_token() }}',id:file.fid}
+ 
+		 			});
+		 			var fmok;
+	return (fmok = file.previewElement) !=null ? fmok .parentNode.removeChild(file.previewElement):void 0;
+		 		},
+
+		 	init:function(){
 		 		@foreach($product->files()->get() as  $file)
-		 		var mock={name:'{{ $file->file_type}}',size:'{{ $file->size}}',type:'{{ $file->mime_type}}'};
+		 		var mock={name:'{{ $file->file_type}}',fid:'{{ $file->id}}',size:'{{ $file->size}}',type:'{{ $file->mime_type}}'};
 		 	this.emit('addedfile',mock);
 		 	this.options.thumbnail.call(this,mock,'{{ url('storage/'.$file->full_file) }}') ;
-		 
-		 		@endforeach
+		 		 		@endforeach
+
+  this.on('sending',function(file,xhr,formData){
+
+  	formData.append('fid','');
+  	file.fid = '';
+  });
+  this.on('success',function(file,response){
+  	file.fid = response.id;
+  				});
 		 	}
 		 });
 	});
@@ -39,7 +64,7 @@ use App\File;
  </script>
 </script>
  @endpush
-  <div id="product_media" class="tab-pane fade fade in active">
+  <div id="product_media" class="tab-pane fade  ">
 
        <h3>{{ trans('admin.product_media') }}</h3>  
       <div class="dropzone" id="dropzonefileupload"></div>

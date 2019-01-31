@@ -54,6 +54,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
   
        Route::post('upload/image/{pid}', 'ProductsController@upload_file');
+       Route::post('delete/image', 'ProductsController@delete_file');
  
       Route::get('/', function () {
          return view('admin.home');
