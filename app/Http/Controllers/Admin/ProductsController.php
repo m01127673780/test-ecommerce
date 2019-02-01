@@ -28,6 +28,29 @@ class ProductsController extends Controller {
 			return redirect(aurl('products/'. $product->id .'/edit'));
 		} 
   }
+public function delete_main_image ($id) {
+
+			 $product = Product::find( $id);
+			 Storage::delete($product->photo);
+			 $product->photo = null;
+ 			 $product->save();
+	 		// 'id' => $fid], 
+   	 			  return response(['status' => true], 200);
+	}
+	//-----------------------------------
+	public function update_Product_image ($id) {
+	 $product = Product::where('id',$id)->update([
+	 	'photo'=> up()->upload([
+					'file'        => 'file',
+					'path'        => 'products/'.$id,
+					'upload_type' => 'single',
+					'delete_file' => '',
+		]),
+   	 ]);
+   	 //'photo' => $product->photo
+   	 	return response(['status' => true, ], 200);
+
+ 	}
 
 	/**
 	 * Store a newly created resource in storage.
