@@ -30,8 +30,19 @@ $(document).ready(function(){
         r.push(data.instance.get_node(data.selected[i]).id);
       //  name.push(data.instance.get_node(data.selected[i]).text);
     }
-     $('.department_id').val(r.join(', '));
-  
+    var department = r.join(', ')
+     $('.department_id').val(department);
+    $.ajax({
+      url:"{{ aurl('load/wight/size') }}",
+      dataType:'html',
+      type:'post',
+      data:{_token:'{{ csrf_token() }}',dep_id:department},
+      success: function(data)
+      {
+        $('.size_weight').html(data);
+      }
+
+    });
 });
 
 </script>

@@ -46,17 +46,19 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
       Route::delete('sizes/destroy/all', 'SizesController@multi_delete');
 
    
+      Route::resource('weights', 'WeightsController');
+      Route::delete('weights/destroy/all', 'WeightsController@multi_delete');
+ 
       Route::resource('products', 'ProductsController');
       Route::delete('products/destroy/all', 'ProductsController@multi_delete');
 
-      Route::resource('products', 'ProductsController');
-      Route::delete('products/destroy/all', 'ProductsController@multi_delete');
-
-  
+       Route::resource('products', 'ProductsController');
+       Route::delete('products/destroy/all', 'ProductsController@multi_delete');
        Route::post('upload/image/{pid}', 'ProductsController@upload_file');
        Route::post('delete/image', 'ProductsController@delete_file');
        Route::post('update/image/{pid}', 'ProductsController@update_Product_image');
        Route::post('delete/product/image/{pid}', 'ProductsController@delete_main_image');
+       Route::post('load/wight/size', 'ProductsController@prepare_wight_size');
  
       Route::get('/', function () {
          return view('admin.home');

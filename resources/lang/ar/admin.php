@@ -124,7 +124,7 @@ return [
    'product_info'                 =>' معلومات المنتج',
    'product_setting'              =>' اعدادات المنتج',
    'product_content'              =>'   محتوى  المنتج',
-   'product_size_weight'          =>' الوزن والججم',
+   'product_size_weight'          =>' ا معلومات الشحن ',
    'product_other_data'           =>'معلومات اضفايه',
    'create_products'              =>'اضافه منتج',
    'save_continue'                =>' حفظ واستمرار',
@@ -145,9 +145,13 @@ return [
    'active'                         =>'  مفعل ',
    'start_offer_at'                 =>'  بديه تاريخ بدايه العرض الخاص بلمنتج  ',
    'end_offer_at'                   =>'   تاريخ نهايه العرض ',
-   'refused_reason'                  =>' سبب ال رفض',
+   'refused_reason'                 =>' سبب ال رفض',
    'mainphoto'                      =>' للمنتج الصوره الرئيسه',
-   'other_files'                      =>'    صور او فديوهات او ملفات اخرى للمنتج  ',
+   'other_files'                    =>'    صور او   او ملفات اخرى للمنتج  ',
+   'size_id'                        =>' نوع المقاس',
+   'size'                           =>'المقاس',
+   'weight_id'                      =>' نوع الحجم ',
+   'weight'                         =>'الحجم',
    ];
 
  

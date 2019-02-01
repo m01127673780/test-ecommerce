@@ -4,6 +4,8 @@ use App\DataTables\ProductsDatatable;
 use App\Http\Controllers\Controller;
 
 use App\Model\Product;
+use App\Model\Sizes;
+use App\Model\Weight;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -22,15 +24,27 @@ class ProductsController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
+	public function prepare_wight_size() 
+	{	
+		if(request()->ajax() and request()->has('dep_id')){
+	$sizes	=  Sizes::Where('department_id', request('dep_id'))->pluck('name_' . session('lang'), 'id');
+	$weights = Weight::pluck('name_'.session('lang'), 'id');
+	return view('admin.products.ajax.size_weight', ['sizes'=> $sizes,'weights' => $weights])->render();
+	}else{
+		return 'رجاء  اختيار قسم';
+	}
+}
+
+	/*-----------------------------------------------------------------*/
 	public function create() {
 	 $product= Product::create(['title' =>'',]);
 		if(!empty( $product)){
 			return redirect(aurl('products/'. $product->id .'/edit'));
 		} 
   }
-public function delete_main_image ($id) {
+public function delete_main_image($id) {
 
-			 $product = Product::find( $id);
+			 $product = Product::find($id);
 			 Storage::delete($product->photo);
 			 $product->photo = null;
  			 $product->save();

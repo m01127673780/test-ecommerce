@@ -37,6 +37,7 @@ Schema::create('products', function (Blueprint $table) {
             $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');  
 
 
+            $table->string('size')->nullable();
             $table->integer('size_id')->unsigned()->nullable();
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');  
           
