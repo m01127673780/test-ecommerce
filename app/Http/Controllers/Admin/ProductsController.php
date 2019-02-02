@@ -25,10 +25,12 @@ class ProductsController extends Controller {
 	 */
 	public function prepare_wight_size() 
 	{	
-		if(request()->ajax() and request()->has('dep_id')){
-	//return get_parent(request('dep_id'));
-
-$sizes = Sizes::WhereIn('department_id',explode(',', get_parent(request('dep_id'))))->pluck('name_' . session('lang'), 'id');
+ 		if(request()->ajax() and request()->has('dep_id')){
+ $dep_list = array_diff( explode(',', get_parent(request('dep_id'))), [request('dep_id')]);
+ $size_1 = Sizes::Where('is_public','yes')->WhereIn('department_id', $dep_list)->pluck('name_' . session('lang'), 'id');
+$size_2 = Sizes::Where('department_id',request('dep_id'))->pluck('name_' . session('lang'), 'id');
+$sizes = array_merge(json_decode($size_1,true),json_decode($size_2,true));
+// return  $sizes ; 
 	$weights = Weight::pluck('name_'.session('lang'), 'id');
 	return view('admin.products.ajax.size_weight', ['sizes'=> $sizes,'weights' => $weights])->render();
 	}else{
