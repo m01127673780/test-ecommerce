@@ -1,9 +1,6 @@
 
 @push('js')
 <!-- Trigger the modal with a button -->
-
- 
-
 <script type="text/javascript">
 $(document).ready(function(){
 

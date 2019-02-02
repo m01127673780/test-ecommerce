@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Admin;
 use App\DataTables\ProductsDatatable;
 use App\Http\Controllers\Controller;
-
 use App\Model\Product;
 use App\Model\Sizes;
 use App\Model\Weight;
@@ -27,7 +26,9 @@ class ProductsController extends Controller {
 	public function prepare_wight_size() 
 	{	
 		if(request()->ajax() and request()->has('dep_id')){
-	$sizes	=  Sizes::Where('department_id', request('dep_id'))->pluck('name_' . session('lang'), 'id');
+	//return get_parent(request('dep_id'));
+
+$sizes = Sizes::WhereIn('department_id',explode(',', get_parent(request('dep_id'))))->pluck('name_' . session('lang'), 'id');
 	$weights = Weight::pluck('name_'.session('lang'), 'id');
 	return view('admin.products.ajax.size_weight', ['sizes'=> $sizes,'weights' => $weights])->render();
 	}else{

@@ -6,6 +6,23 @@ if (!function_exists('setting')) {
 	}
 }
 
+if (!function_exists('get_parent')) {
+	function get_parent($dep_id) {
+		//$list_department = [];
+
+		$department = \App\Model\Department::find($dep_id);
+		if($department->parent !== null && $department->parent > 0)
+		{
+			//array_push($list_department,$dep_i); 
+			return get_parent($department->parent). "," . $dep_id;
+		}else{
+			return $dep_id;
+		}
+
+		//return $list_department;
+	}
+}
+/*----------------------------------*/
 if (!function_exists('load_dep')) {
 	function load_dep($select = null, $dep_hide = null) {
 
