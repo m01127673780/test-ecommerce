@@ -17,10 +17,12 @@ class CountryDatatable extends DataTable {
 			->addColumn('checkbox', 'admin.countries.btn.checkbox')
 			->addColumn('edit', 'admin.countries.btn.edit')
 			->addColumn('delete', 'admin.countries.btn.delete')
+			->addColumn('image', 'admin.countries.btn.image')
 			->rawColumns([
 				'edit',
 				'delete',
 				'checkbox',
+				'image',
 			]);
 	}
 
@@ -112,6 +114,10 @@ class CountryDatatable extends DataTable {
 				'name'  => 'updated_at',
 				'data'  => 'updated_at',
 				'title' => trans('admin.updated_at'),
+			], [
+				'name'  => 'icon',
+				'data'  => 'icon',
+				'title' => trans('admin.icon'),
 			], [
 				'name'       => 'edit',
 				'data'       => 'edit',
