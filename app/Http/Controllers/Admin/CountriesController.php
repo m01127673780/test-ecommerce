@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Model\Country;
 use Illuminate\Http\Request;
-use Storage;
+ use Storage;
 
 class CountriesController extends Controller {
 	/**
@@ -16,6 +16,7 @@ class CountriesController extends Controller {
 	public function index(CountryDatatable $country) {
 		return $country->render('admin.countries.index', ['title' => trans('admin.countries')]);
 	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -64,7 +65,6 @@ class CountriesController extends Controller {
 		session()->flash('success', trans('admin.record_added'));
 		return redirect(aurl('countries'));
 	}
-
 	/**
 	 * Display the specified resource.
 	 *

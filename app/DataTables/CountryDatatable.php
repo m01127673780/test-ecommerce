@@ -115,9 +115,9 @@ class CountryDatatable extends DataTable {
 				'data'  => 'updated_at',
 				'title' => trans('admin.updated_at'),
 			], [
-				'name'  => 'icon',
-				'data'  => 'icon',
-				'title' => trans('admin.icon'),
+				'name'  => 'image',
+				'data'  => 'image',
+				'title' => trans('admin.image'),
 			], [
 				'name'       => 'edit',
 				'data'       => 'edit',

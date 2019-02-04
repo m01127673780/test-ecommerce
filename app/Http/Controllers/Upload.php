@@ -53,7 +53,10 @@ class Upload extends Controller {
 					'relation_id' 	=>  $data['relation_id'],
 			]);
 			return $add->id;
+ 		}else{
+ 			$data ='noImage.png';
  		}
+
 	}
 
 }
