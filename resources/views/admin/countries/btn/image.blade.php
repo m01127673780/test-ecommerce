@@ -1,21 +1,26 @@
-<?php
+<?php 
 if (empty ($logo)){?>
-	<img src="{{ Storage::url($logo) }}noImage.png " >   
+  <img id="imgfalg" src="{{ Storage::url('/countries/No_Image.jpg') }}"   >   
 <?php
-}else{
+}else{ ?>    
+  <img  id="imgfalg" src="{{ Storage::url($logo) }}" id="imgfalg"> 
+<?php
  }
  ?> 
-  	 <img src="{{ Storage::url($logo) }}" class="img-falg"> 
+
+
+
 
   <style type="text/css">
   	
-.img-falg{
+#imgfalg{
     width: 50px;
-    /* border-radius: 50%; */
+    height: 50px;
+    border-radius: 50%;  
     display: block;
     /* text-align: center; */
     margin: auto;
-}
+ 
 }
  </style>
 

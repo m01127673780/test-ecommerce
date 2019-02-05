@@ -21,7 +21,7 @@ class Upload extends Controller {
  		$file = File::find($id);
  		if(!empty($file)) {
  		Storage::delete($file->full_file);
- 		$file->delete();
+ 		$file->delete();		
  	}
  }
 	public function upload($data = []) {

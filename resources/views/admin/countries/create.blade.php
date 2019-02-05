@@ -36,10 +36,16 @@
 
      <div class="form-group">
         {!! Form::label('logo',trans('admin.country_flag')) !!}
-        {!! Form::file('logo',['class'=>'form-control']) !!}
+        {!! Form::file('logo',['class'=>'form-control logo']) !!}
+ 
      </div>
 
-
+ 
+     <div class="form-group">
+       <img name="logo" class="image" src="{{ asset( 'storage/countries/No_Image.jpg')}} "   > 
+     </div>
+   
+    
      {!! Form::submit(trans('admin.add'),['class'=>'btn btn-primary']) !!}
     {!! Form::close() !!}
   </div>
@@ -47,6 +53,16 @@
 </div>
 <!-- /.box -->
 
-
+ <style type="text/css">
+    
+.image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;  
+     /* text-align: center; */
+    margin: auto;
+ 
+}
+ </style>
 
 @endsection
