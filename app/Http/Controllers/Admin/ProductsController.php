@@ -3,8 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\ProductsDatatable;
 use App\Http\Controllers\Controller;
 use App\Model\Product;
-use App\Model\Sizes;
-use App\Model\Weight;
+ 
 use Illuminate\Http\Request;
 use Storage;
 
@@ -77,29 +76,24 @@ public function delete_main_image($id) {
 	 */
 	public function store() {
 
-		$data = $this->validate(request(),
+			$data = $this->validate(request(),
 			[
-				'country_name_ar' => 'required',
-				'country_name_en' => 'required',
-				'mob'             => 'required',
-				'code'            => 'required',
-				'logo'            => 'sometimes|nullable|'.v_image(),
-			], [], [
-				'country_name_ar' => trans('admin.country_name_ar'),
-				'country_name_en' => trans('admin.country_name_en'),
-				'mob'             => trans('admin.mob'),
-				'code'            => trans('admin.code'),
-				'logo'            => trans('admin.country_flag'),
+				'product_name_ar' => 'required',
+				'product_name_en' => 'required',
+				'desc_ar'             => 'required',
+				'desc_en'            => 'required',
+				'price'            => 'required',
+				'department_id'            => 'required',
+ 			], [], [
+				'product_name_ar'           => trans('admin.product_name_ar'),
+				'product_name_en'           => trans('admin.product_name_en'),
+				'desc_ar'                   => trans('admin.desc_ar'),
+				'desc_en'           	    => trans('admin.desc_en'),
+				'price'            			=> trans('admin.price'),
+				'department_id'             => trans('admin.department_id'),
 			]);
 
-		if (request()->hasFile('logo')) {
-			$data['logo'] = up()->upload([
-					'file'        => 'logo',
-					'path'        => 'products',
-					'upload_type' => 'single',
-					'delete_file' => '',
-				]);
-		}
+		 
 
 		Product::create($data);
 		session()->flash('success', trans('admin.record_added'));
@@ -159,33 +153,27 @@ public function delete_main_image($id) {
   			  up()->delete(request('id'));
 		}
  	}
-
+ 
 	public function update(Request $r, $id) {
 
 		$data = $this->validate(request(),
 			[
-				'country_name_ar' => 'required',
-				'country_name_en' => 'required',
-				'mob'             => 'required',
-				'code'            => 'required',
-				'logo'            => 'sometimes|nullable|'.v_image(),
-			], [], [
-				'country_name_ar' => trans('admin.country_name_ar'),
-				'country_name_en' => trans('admin.country_name_en'),
-				'mob'             => trans('admin.mob'),
-				'code'            => trans('admin.code'),
-				'logo'            => trans('admin.logo'),
+				'product_name_ar' => 'required',
+				'product_name_en' => 'required',
+				'desc_ar'         => 'required',
+				'desc_en'         => 'required',
+				'price'           => 'required',
+				'department_id'            => 'required',
+ 			], [], [
+				'product_name_ar'           => trans('admin.product_name_ar'),
+				'product_name_en'           => trans('admin.product_name_en'),
+				'desc_ar'                   => trans('admin.desc_ar'),
+				'desc_en'           	    => trans('admin.desc_en'),
+				'price'            			=> trans('admin.price'),
+				'department_id'             => trans('admin.department_id'),
 			]);
 
-		if (request()->hasFile('logo')) {
-			$data['logo'] = up()->upload([
-					'file'        => 'logo',
-					'path'        => 'products',
-					'upload_type' => 'single',
-					'delete_file' => Product::find($id)->logo,
-				]);
-		}
-
+		 
 		Product::where('id', $id)->update($data);
 		session()->flash('success', trans('admin.updated_record'));
 		return redirect(aurl('products'));
